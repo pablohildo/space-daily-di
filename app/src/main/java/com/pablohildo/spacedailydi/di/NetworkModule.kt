@@ -1,6 +1,7 @@
 package com.pablohildo.spacedailydi.di
 
 import com.pablohildo.spacedailydi.BuildConfig
+import com.pablohildo.spacedailydi.network.APIInterface
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -45,5 +46,9 @@ val networkModule = module {
             .addConverterFactory(MoshiConverterFactory.create(get()))
             .client(get())
             .build()
+    }
+
+    single {
+        get<Retrofit>().create(APIInterface::class.java)
     }
 }
